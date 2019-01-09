@@ -5,7 +5,7 @@
     .save-date__photo.save-date__second-photo
   .save-date__info
     h1 Kasey Culmback & Kayla Zobel are getting married!
-    p September 7th, 2018
+    p September 7th, 2019
     p Denison Ridge<br>4702 Furzee Rd<br>Clayton, WA 99110
     p Check back later for more info...
 </template>
