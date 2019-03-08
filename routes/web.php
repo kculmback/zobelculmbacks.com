@@ -11,4 +11,4 @@
 |
 */
 
-Route::fallback('SiteController@comingSoon');
+Route::fallback('SiteController@main');

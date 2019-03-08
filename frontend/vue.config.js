@@ -21,8 +21,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 module.exports = {
-  baseUrl: '/',
-  outputDir: process.env.NODE_ENV === 'production' ? `../public` : 'dist',
+  baseUrl: process.env.NODE_ENV === 'production' ? '/build' : '/',
+  outputDir: process.env.NODE_ENV === 'production' ? `../public/build` : 'dist',
   indexPath: process.env.NODE_ENV === 'production' ? path.join(__dirname, `../resources/views/main.blade.php`) : 'index.html',
   // css: {
   //   loaderOptions: {
