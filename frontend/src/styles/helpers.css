@@ -1,0 +1,37 @@
+/* .pin-c {
+  left: 50%;
+}
+
+.pin-m {
+  top: 50%;
+} */
+
+.center-horizontal {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center-vertical {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center-both {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.hr-fade {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}

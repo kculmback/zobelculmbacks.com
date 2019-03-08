@@ -3,7 +3,7 @@ const path = require('path')
 //   return path.join(__dirname, dir)
 // }
 
-const name = process.argv[process.argv.findIndex(arg => arg === '--entry-name') + 1]
+// const name = process.argv[process.argv.findIndex(arg => arg === '--entry-name') + 1]
 
 const port = process.env.DEV_PORT || 4000
 const https = process.env.HTTPS_OVERRIDE === 'true'
@@ -21,19 +21,35 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 module.exports = {
-  baseUrl: process.env.NODE_ENV === 'production' ? `/static/${name}` : '/',
-  outputDir: process.env.NODE_ENV === 'production' ? `../public/static/${name}` : 'dist',
-  indexPath: process.env.NODE_ENV === 'production' ? path.join(__dirname, `../resources/views/${name}.blade.php`) : 'index.html',
-  css: {
-    loaderOptions: {
-      sass: {
-        // this automatically injects the following files into Vue files in the SCSS section
-        data: `
-          @import "@/styles/_variables.scss";
-          @import "@/styles/_breakpoints.scss";
-        `,
-      },
-    },
+  baseUrl: '/',
+  outputDir: process.env.NODE_ENV === 'production' ? `../public` : 'dist',
+  indexPath: process.env.NODE_ENV === 'production' ? path.join(__dirname, `../resources/views/main.blade.php`) : 'index.html',
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       // this automatically injects the following files into Vue files in the SCSS section
+  //       data: `
+  //         @import "@/styles/_variables.scss";
+  //         @import "@/styles/_breakpoints.scss";
+  //       `,
+  //     },
+  //   },
+  // },
+  chainWebpack: config => {
+    // // helps fix safari cache bug for hot reloading
+    // if (process.env.NODE_ENV === 'development') {
+    //   config
+    //     .output
+    //     .filename('[name].[hash].js')
+    //     .end()
+    // }
+
+    const svgRule = config.module.rule('svg')
+    svgRule.uses.clear()
+    svgRule.use('vue-svg-loader')
+      .loader('vue-svg-loader')
+
+    config.plugins.delete('prefetch')
   },
   devServer: {
     https,
