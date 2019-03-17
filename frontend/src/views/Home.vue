@@ -17,7 +17,7 @@
             a(href="https://denisonridge.com/" target="_blank") www.denisonridge.com
       hr.hr-fade
       .py-6
-        p Looking for more information? If you're in need of a place to stay, take a peek at some nearby #[router-link(:to="{ name: 'Accommodation' }") accommodations]. Not sure of what to do when in Spokane? Check out our #[router-link(:to="{ name: 'Activities' }") local activites suggestions]! If you're looking for the registry, you can find it #[router-link(:to="{ name: 'Registry' }") here].
+        p Looking for more information? If you're in need of a place to stay, take a peek at some nearby #[router-link(:to="{ name: 'Accommodations' }") accommodations]. Not sure of what to do when in Spokane? Check out our #[router-link(:to="{ name: 'Activities' }") local activites suggestions]! If you're looking for the registry, you can find it #[router-link(:to="{ name: 'Registry' }") here].
 </template>
 
 <script>
@@ -29,7 +29,13 @@ export default {
   name: 'home',
   metaInfo: {
     title: metadata.title.default,
-    meta: [{ name: 'description', content: metadata.description.default }],
+    meta: [
+      { name: 'description', content: metadata.description.default },
+      { property: 'og:title', content: metadata.title.default },
+      { property: 'og:description', content: metadata.description.default },
+      { property: 'twitter:title', content: metadata.title.default },
+      { property: 'twitter:description', content: metadata.description.default },
+    ],
   },
   components: {
     Calendar,

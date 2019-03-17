@@ -48,7 +48,13 @@ export default {
   name: 'Accommodations',
   metaInfo: {
     title: metadata.title.accommodations,
-    meta: [{ name: 'description', content: metadata.description.accommodations }],
+    meta: [
+      { name: 'description', content: metadata.description.accommodations },
+      { property: 'og:title', content: metadata.title.accommodations },
+      { property: 'og:description', content: metadata.description.accommodations },
+      { property: 'twitter:title', content: metadata.title.accommodations },
+      { property: 'twitter:description', content: metadata.description.accommodations },
+    ],
   },
   data () {
     return {

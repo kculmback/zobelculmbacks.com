@@ -16,7 +16,13 @@ export default {
   name: 'RSVP',
   metaInfo: {
     title: metadata.title.rsvp,
-    meta: [{ name: 'description', content: metadata.description.rsvp }],
+    meta: [
+      { name: 'description', content: metadata.description.rsvp },
+      { property: 'og:title', content: metadata.title.rsvp },
+      { property: 'og:description', content: metadata.description.rsvp },
+      { property: 'twitter:title', content: metadata.title.rsvp },
+      { property: 'twitter:description', content: metadata.description.rsvp },
+    ],
   },
 }
 </script>

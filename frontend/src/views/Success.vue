@@ -15,7 +15,13 @@ export default {
   name: 'Success',
   metaInfo: {
     title: metadata.title.default,
-    meta: [{ name: 'description', content: metadata.description.default }],
+    meta: [
+      { name: 'description', content: metadata.description.default },
+      { property: 'og:title', content: metadata.title.default },
+      { property: 'og:description', content: metadata.description.default },
+      { property: 'twitter:title', content: metadata.title.default },
+      { property: 'twitter:description', content: metadata.description.default },
+    ],
   },
 }
 </script>

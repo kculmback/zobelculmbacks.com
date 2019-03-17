@@ -14,6 +14,20 @@
 
     <meta name="description" content="{{ $meta_description }}">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $meta_title }}">
+    <meta name="twitter:description" content="{{ $meta_description }}">
+    <meta name="twitter:image" content="{{ asset('/share/tw.jpg') }}">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="{{ url()->full() }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ $meta_title }}" />
+    <meta property="og:description" content="{{ $meta_description }}" />
+    <meta property="og:image" content="{{ asset('/share/og.jpg') }}" />
+    <meta property="og:image:secure_url" content="{{ asset('/share/og.jpg') }}" />
+
     <title>{{ $meta_title }}</title>
 
     <!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->

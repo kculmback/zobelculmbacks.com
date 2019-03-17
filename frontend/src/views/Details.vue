@@ -61,7 +61,13 @@ export default {
   components: { Bride, Groom },
   metaInfo: {
     title: metadata.title.details,
-    meta: [{ name: 'description', content: metadata.description.details }],
+    meta: [
+      { name: 'description', content: metadata.description.details },
+      { property: 'og:title', content: metadata.title.details },
+      { property: 'og:description', content: metadata.description.details },
+      { property: 'twitter:title', content: metadata.title.details },
+      { property: 'twitter:description', content: metadata.description.details },
+    ],
   },
 }
 </script>

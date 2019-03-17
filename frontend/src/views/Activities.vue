@@ -136,7 +136,13 @@ export default {
   },
   metaInfo: {
     title: metadata.title.activities,
-    meta: [{ name: 'description', content: metadata.description.activities }],
+    meta: [
+      { name: 'description', content: metadata.description.activities },
+      { property: 'og:title', content: metadata.title.activities },
+      { property: 'og:description', content: metadata.description.activities },
+      { property: 'twitter:title', content: metadata.title.activities },
+      { property: 'twitter:description', content: metadata.description.activities },
+    ],
   },
 }
 </script>

@@ -38,7 +38,13 @@ export default {
   components: { Stripe, TargetLogo, AmazonLogo },
   metaInfo: {
     title: metadata.title.registry,
-    meta: [{ name: 'description', content: metadata.description.registry }],
+    meta: [
+      { name: 'description', content: metadata.description.registry },
+      { property: 'og:title', content: metadata.title.registry },
+      { property: 'og:description', content: metadata.description.registry },
+      { property: 'twitter:title', content: metadata.title.registry },
+      { property: 'twitter:description', content: metadata.description.registry },
+    ],
   },
 }
 </script>
