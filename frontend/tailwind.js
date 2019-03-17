@@ -542,6 +542,7 @@ module.exports = {
     '10': '2.5rem',
     '12': '3rem',
     '16': '4rem',
+    '20': '5rem',
     '24': '6rem',
     '32': '8rem',
     '48': '12rem',
@@ -640,6 +641,7 @@ module.exports = {
   */
 
   maxHeight: {
+    '20': '5rem',
     'full': '100%',
     'screen': '100vh',
   },

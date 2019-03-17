@@ -1,5 +1,5 @@
 <template lang="pug">
-  .activities.pt-6
+  .activities.pt-6.px-6
     h1.text-center Activities
     .max-w-md.mx-auto
       section.mb-8
@@ -122,6 +122,8 @@ import Tickets from '@/assets/icons/tickets.svg'
 import Alcohol from '@/assets/icons/alcohol.svg'
 import Burger from '@/assets/icons/burger.svg'
 
+import metadata from '../helpers/metadata.js'
+
 // const log = debug('view:Activities')
 
 export default {
@@ -131,6 +133,10 @@ export default {
     Tickets,
     Alcohol,
     Burger,
+  },
+  metaInfo: {
+    title: metadata.title.activities,
+    meta: [{ name: 'description', content: metadata.description.activities }],
   },
 }
 </script>

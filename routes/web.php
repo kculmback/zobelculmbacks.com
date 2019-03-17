@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,4 +13,9 @@
 |
 */
 
+Route::get('/details', 'SiteController@main')->name('details');
+Route::get('/activities', 'SiteController@main')->name('activities');
+Route::get('/accommodations', 'SiteController@main')->name('accommodations');
+Route::get('/registry', 'SiteController@main')->name('registry');
+Route::get('/rsvp', 'SiteController@main')->name('rsvp');
 Route::fallback('SiteController@main');

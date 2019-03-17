@@ -1,5 +1,5 @@
 <template lang="pug">
-  .accommodations.text-center.pt-6.px-4
+  .accommodations.text-center.pt-6.px-6
     h1.mb-8 Accommodations
     .mb-8
       h2.mb-2 Hotels
@@ -40,10 +40,16 @@ import Airbnb from '@/assets/icons/airbnb.svg'
 import Homeaway from '@/assets/logos/homeaway.svg'
 import Vrbo from '@/assets/logos/vrbo.svg'
 
+import metadata from '../helpers/metadata.js'
+
 // const log = debug('view:Accommodations')
 
 export default {
   name: 'Accommodations',
+  metaInfo: {
+    title: metadata.title.accommodations,
+    meta: [{ name: 'description', content: metadata.description.accommodations }],
+  },
   data () {
     return {
       hotels: [

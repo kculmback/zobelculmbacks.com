@@ -11,8 +11,9 @@ class SiteController extends Controller
         return view('comingSoon');
     }
 
-    public function main()
+    public function main(Request $request)
     {
+        dd($request->route()->getName());
         return view('main');
     }
 }

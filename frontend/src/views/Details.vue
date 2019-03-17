@@ -1,5 +1,5 @@
 <template lang="pug">
-  .details.text-center.pt-8.px-4.max-w-lg.mx-auto
+  .details.text-center.pt-8.px-6.max-w-lg.mx-auto
     .details__section.mb-8
       h1 Day Of Information
     .details__section
@@ -52,11 +52,17 @@
 import Bride from '@/assets/icons/bride.svg'
 import Groom from '@/assets/icons/wedding-suit.svg'
 
+import metadata from '../helpers/metadata.js'
+
 // const log = debug('view:Details')
 
 export default {
   name: 'Details',
   components: { Bride, Groom },
+  metaInfo: {
+    title: metadata.title.details,
+    meta: [{ name: 'description', content: metadata.description.details }],
+  },
 }
 </script>
 

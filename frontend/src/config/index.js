@@ -4,6 +4,7 @@ const production = {
   isLocal: false,
   isProduction: true,
   guard: true,
+  stripe: 'pk_live_jBiXcr3SXt3RunMQC9AfmP6J',
 }
 
 const dev = {
@@ -11,6 +12,7 @@ const dev = {
   isLocal: true,
   isProduction: false,
   guard: false,
+  stripe: 'pk_test_Ml0jaaUAIzMtGk5lRRrg9yte',
 }
 
 // initialize config

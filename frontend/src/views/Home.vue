@@ -23,8 +23,14 @@
 <script>
 import Calendar from '@/assets/icons/calendar.svg'
 
+import metadata from '../helpers/metadata.js'
+
 export default {
   name: 'home',
+  metaInfo: {
+    title: metadata.title.default,
+    meta: [{ name: 'description', content: metadata.description.default }],
+  },
   components: {
     Calendar,
   },

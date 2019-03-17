@@ -8,10 +8,16 @@
 <script>
 // import debug from 'debug'
 
+import metadata from '../helpers/metadata.js'
+
 // const log = debug('view:RSVP')
 
 export default {
   name: 'RSVP',
+  metaInfo: {
+    title: metadata.title.rsvp,
+    meta: [{ name: 'description', content: metadata.description.rsvp }],
+  },
 }
 </script>
 

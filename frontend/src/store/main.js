@@ -1,3 +1,4 @@
 import initStore from './index'
+import stripe from './modules/stripe'
 
-export default initStore()
+export default initStore({ stripe })

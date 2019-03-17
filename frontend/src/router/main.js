@@ -6,6 +6,7 @@ const Activities = () => import('../views/Activities.vue')
 const Accommodations = () => import('../views/Accommodations.vue')
 const Registry = () => import('../views/Registry.vue')
 const RSVP = () => import('../views/RSVP.vue')
+const Success = () => import('../views/Success.vue')
 
 /**
  * @function defineRouter
@@ -38,6 +39,11 @@ export default function defineRouter (store) {
       path: '/registry',
       name: 'Registry',
       component: Registry,
+    },
+    {
+      path: '/registry/success',
+      name: 'Success',
+      component: Success,
     },
     {
       path: '/rsvp',

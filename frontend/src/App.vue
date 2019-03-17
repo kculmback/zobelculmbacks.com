@@ -6,12 +6,17 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import AppNav from '@/components/AppNav'
 
 export default {
   name: 'App',
   components: {
     AppNav,
+  },
+  methods: {
+    ...mapActions('stripe', ['setHandler', 'setToken', 'setStripeLoaded']),
   },
 }
 </script>
