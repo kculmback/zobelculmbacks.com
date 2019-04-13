@@ -1,0 +1,71 @@
+version: '3.4'
+
+x-frontend:
+  &default-frontend
+  build:
+    context: frontend/.
+    dockerfile: frontend.Dockerfile
+  volumes:
+    - ./frontend:/usr/src/app
+    -  /usr/src/app/node_modules
+  environment:
+    - NODE_ENV=dev
+  networks:
+    - proxy
+    - local
+
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+      args:
+        - WITH_XDEBUG=true
+    volumes:
+      - .:/srv/app
+      - /srv/app/vendor
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+    networks:
+      - proxy
+      - local
+    external_links:
+      - mailhog
+    labels:
+      - traefik.app.frontend.rule=Host:backend-zobelculmbacks.${DEV_DOMAIN}
+      - traefik.dev.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN};PathPrefix:/admin,/vendor/,/storage,/api,/uploads,/svg
+      - traefik.docker.network=proxy
+
+  frontend:
+    << : *default-frontend
+    command: npm run serve
+    labels:
+      - traefik.port=3000
+      - traefik.docker.network=proxy
+      - "traefik.mainfront.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN}"
+
+  mysql:
+    image: 'mysql:5.7'
+    environment:
+      - MYSQL_USER=homestead
+      - MYSQL_DATABASE=homestead
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=14four
+    ports:
+      - 0:3306
+    networks:
+      - local
+    volumes:
+      - zobelculmbacks:/var/lib/mysql
+
+volumes:
+  zobelculmbacks:
+
+networks:
+  local:
+    external: false
+  proxy:
+    external: true

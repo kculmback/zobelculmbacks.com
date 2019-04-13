@@ -5,7 +5,7 @@ const path = require('path')
 
 // const name = process.argv[process.argv.findIndex(arg => arg === '--entry-name') + 1]
 
-const port = process.env.DEV_PORT || 4000
+const port = process.env.DEV_PORT || 3000
 const https = process.env.HTTPS_OVERRIDE === 'true'
 
 let homesteadUrl = () => { }
