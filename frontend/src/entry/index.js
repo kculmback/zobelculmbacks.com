@@ -36,13 +36,15 @@ export default function entry (router, store, entryName, options = {}) {
     })
   }
 
+  const AppTemplate = options.App || App
+
   new Vue({
     router,
     store,
     data: {
       site: entryName,
     },
-    render: h => h(App),
+    render: h => h(AppTemplate),
   }).$mount('#app')
 
   if (Config.get('enableDebug') || Config.get('isLocal')) {

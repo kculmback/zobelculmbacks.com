@@ -1,5 +1,5 @@
 import initRouter from './index'
-import ComingSoon from '../views/ComingSoon.vue'
+import Dashboard from '@/views/admin/Dashboard.vue'
 
 /**
  * @function defineRouter
@@ -10,10 +10,10 @@ export default function defineRouter (store) {
   const routes = [
     {
       path: '/',
-      name: 'ComingSoon',
-      component: ComingSoon,
+      name: 'Dashboard',
+      component: Dashboard,
     },
   ]
 
-  return initRouter(routes, store)
+  return initRouter(routes, store, { base: '/admin' })
 }

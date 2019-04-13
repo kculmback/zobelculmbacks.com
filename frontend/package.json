@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve src/entry/main.js",
-    "build": "vue-cli-service build --modern src/entry/main.js",
+    "serve:main": "vue-cli-service serve --entry-name main src/entry/main.js",
+    "serve:admin": "vue-cli-service serve --entry-name admin src/entry/admin.js",
+    "build:main": "vue-cli-service build --modern --entry-name main src/entry/main.js",
+    "build:admin": "vue-cli-service build --modern --entry-name admin src/entry/main.js",
+    "build": "run-p --aggregate-output build:**",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

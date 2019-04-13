@@ -20,7 +20,7 @@ export default function initRouter (routes, store, options = {}) {
 
   const router = new Router({
     mode: 'history',
-    base: '/',
+    base: options.base || '/',
     scrollBehavior (to, from, savedPosition) {
       if (to.hash) {
         return {

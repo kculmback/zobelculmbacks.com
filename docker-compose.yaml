@@ -41,11 +41,19 @@ services:
 
   frontend:
     << : *default-frontend
-    command: npm run serve
+    command: npm run serve:main
     labels:
       - traefik.port=3000
       - traefik.docker.network=proxy
       - "traefik.mainfront.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN}"
+
+  admin:
+    << : *default-frontend
+    command: npm run serve:admin
+    labels:
+      - traefik.port=3000
+      - traefik.docker.network=proxy
+      - "traefik.mainfront.frontend.rule=Host:admin-zobelculmbacks.${DEV_DOMAIN}"
 
   mysql:
     image: 'mysql:5.7'
