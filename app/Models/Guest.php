@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Guest extends Model
 {
+    use Searchable;
+
     /**
      * Hide specific attributes when serialized
      *
@@ -24,6 +27,18 @@ class Guest extends Model
      * @var array
      */
     protected $fillable = ['name', 'rsvp'];
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        return ['name' => $array['name']];
+    }
 
     public function invite()
     {
