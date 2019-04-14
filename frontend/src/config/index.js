@@ -5,6 +5,7 @@ const production = {
   isProduction: true,
   guard: true,
   stripe: 'pk_live_jBiXcr3SXt3RunMQC9AfmP6J',
+  apiBase: '/api/',
 }
 
 const dev = {

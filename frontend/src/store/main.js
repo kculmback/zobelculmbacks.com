@@ -1,4 +1,4 @@
 import initStore from './index'
-import stripe from './modules/stripe'
+import rsvp from './modules/rsvp'
 
-export default initStore({ stripe })
+export default initStore({ rsvp })

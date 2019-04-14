@@ -1,19 +1,76 @@
 <template lang="pug">
   .rsvp.pt-6
     h1.text-center RSVP
+    .max-w-md.mx-auto.my-6
+      input.rounded.shadow-md.w-full.px-2.py-4.border.border-grey-lighter(:value="search" @input="handleInput" placeholder="Search")
     .max-w-md.mx-auto
-      p.text-center Coming soon...
+      p.text-center.mb-6.text-red-dark(v-if="error") Error while submitting search. Please try again! If the issue persists, please contact Kasey or Kayla.
+      p.text-center(v-if="loading") Loading...
+      template(v-else-if="searchResults.length")
+        .rounded.shadow-md.px-4.py-6.flex.items-center.justify-between.mb-6(v-for="{ name, invite_id } in searchResults")
+          p.block {{ name }}
+          router-link.bg-blue.block.text-white.px-2.py-3.rounded(:to="`/rsvp/${invite_id}`") See Invite & RSVP
+      p.text-center(v-else) No results.
 </template>
 
 <script>
-// import debug from 'debug'
+import debug from 'debug'
+import { mapActions, mapState } from 'vuex'
 
 import metadata from '../helpers/metadata.js'
+import { debounce } from '../helpers/misc.js'
 
-// const log = debug('view:RSVP')
+const log = debug('view:RSVP')
 
 export default {
   name: 'RSVP',
+  data () {
+    return {
+      search: '',
+      loading: false,
+      searchCounter: 0,
+      error: false,
+    }
+  },
+  computed: {
+    ...mapState('rsvp', ['searchResults']),
+  },
+  methods: {
+    ...mapActions('rsvp', ['submitSearch', 'clearSearchResults']),
+    handleInput: debounce(function (event) {
+      const value = event.target.value
+      this.search = value
+      this.error = false
+
+      if (value.length === 0) {
+        this.clearSearchResults()
+      } else if (value.length > 2) {
+        this.loading = true
+        this.handleSearch()
+      }
+    }, 250),
+    handleSearch () {
+      this.submitSearch(this.search)
+        .then(() => { this.loading = false })
+        .catch(this.handleError)
+    },
+    handleError (error) {
+      log(error)
+      if (
+        error &&
+        error.response &&
+        error.response.status === 408 &&
+        this.searchCounter < 2
+      ) {
+        this.searchCounter += 1
+        this.handleSearch()
+      } else {
+        this.searchCounter = 0
+        this.error = true
+        this.loading = false
+      }
+    },
+  },
   metaInfo: {
     title: metadata.title.rsvp,
     meta: [

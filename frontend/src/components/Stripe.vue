@@ -92,7 +92,7 @@ export default {
 
       if (!this.validate(amount)) return
 
-      axios.post('/api/stripe', {
+      axios.post('stripe', {
         amount: Math.round(amount * 100),
         gift: this.gift,
         note: this.note,
