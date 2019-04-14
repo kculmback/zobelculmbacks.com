@@ -9,7 +9,7 @@
       template(v-else-if="searchResults.length")
         .rounded.shadow-md.px-4.py-6.flex.items-center.justify-between.mb-6(v-for="{ name, invite_id } in searchResults")
           p.block {{ name }}
-          router-link.bg-blue.block.text-white.px-2.py-3.rounded(:to="`/rsvp/${invite_id}`") See Invite & RSVP
+          a.rsvp__btn.bg-blue.block.text-white.px-2.py-3.rounded(:href="`/rsvp/${invite_id}`" @click.prevent="goToInvite(name, invite_id)" class="hover:bg-blue-dark hover:text-white") See Invite & RSVP
       p.text-center(v-else) No results.
 </template>
 
@@ -36,7 +36,7 @@ export default {
     ...mapState('rsvp', ['searchResults']),
   },
   methods: {
-    ...mapActions('rsvp', ['submitSearch', 'clearSearchResults']),
+    ...mapActions('rsvp', ['submitSearch', 'clearSearchResults', 'setName']),
     handleInput: debounce(function (event) {
       const value = event.target.value
       this.search = value
@@ -70,6 +70,10 @@ export default {
         this.loading = false
       }
     },
+    goToInvite (name, id) {
+      this.setName(name)
+      this.$router.push(`/rsvp/${id}`)
+    },
   },
   metaInfo: {
     title: metadata.title.rsvp,
@@ -84,6 +88,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.rsvp {}
+<style lang="postcss" scoped>
+.rsvp {
+  &__btn {
+    transition: background 250ms;
+  }
+}
 </style>

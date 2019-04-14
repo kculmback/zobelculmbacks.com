@@ -5,8 +5,9 @@ const Details = () => import('../views/Details.vue')
 const Activities = () => import('../views/Activities.vue')
 const Accommodations = () => import('../views/Accommodations.vue')
 const Registry = () => import('../views/Registry.vue')
-const RSVP = () => import('../views/RSVP.vue')
 const Success = () => import('../views/Success.vue')
+const RSVP = () => import('../views/RSVP.vue')
+const Invite = () => import('../views/Invite.vue')
 
 /**
  * @function defineRouter
@@ -49,6 +50,11 @@ export default function defineRouter (store) {
       path: '/rsvp',
       name: 'RSVP',
       component: RSVP,
+    },
+    {
+      path: '/rsvp/:invite_id',
+      name: 'Inivte',
+      component: Invite,
     },
   ]
 
