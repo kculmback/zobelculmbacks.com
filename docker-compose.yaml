@@ -22,6 +22,8 @@ services:
       dockerfile: app.Dockerfile
       args:
         - WITH_XDEBUG=true
+    ports:
+      - 0:80
     volumes:
       - .:/srv/app
       - /srv/app/vendor
