@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invite;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateInviteRequest;
 
 class InviteController extends Controller
 {
@@ -12,19 +13,13 @@ class InviteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $take = $request->input('take') ?? 15;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()
+            ->json(Invite::with('guests')
+            ->simplePaginate($take));
     }
 
     /**
@@ -33,9 +28,26 @@ class InviteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateInviteRequest $request)
     {
-        //
+        $invite = $this->createInvite();
+        $invite = $this->createGuests($invite, $request->input('guests'));
+        return $invite;
+    }
+
+    private function createInvite()
+    {
+        $invite = Invite::create();
+        $code = 1000 + $invite->id;
+        $invite['code'] = (string)$code;
+        $invite->save();
+
+        return $invite;
+    }
+
+    private function createGuests(Invite $invite, array $guests)
+    {
+        return $invite->guests()->createMany($guests);
     }
 
     /**
