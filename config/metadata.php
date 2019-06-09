@@ -9,6 +9,7 @@ return [
         'accommodations' => "Accommodations - {$default}",
         'registry' => "Registry - {$default}",
         'rsvp' => "RSVP - {$default}",
+        'invite' => "Invite - {$default}",
         'default' => $default,
     ],
 
@@ -18,6 +19,7 @@ return [
         'accommodations' => 'Accommodations to stay at in Spokane, WA while attending Kayla Zobel and Kasey Culmback\'s wedding.',
         'registry' => 'Kasey Culmback and Kayla Zobel\'s Wedding Registry',
         'rsvp' => 'RSVP to Kayla Zobel and Kasey Culmback\'s wedding.',
+        'invite' => 'Invite information for Kayla Zobel and Kasey Culmback\'s wedding.',
         'default' => 'The wedding website for Kasey Culmback and Kayla Zobel.',
     ],
 ];

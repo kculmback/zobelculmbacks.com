@@ -24,7 +24,7 @@
             .invite__guest.flex.items-center.mb-2(v-for="({ name, rsvp, id }, index) in guests")
               input(ref="inputs" type="checkbox" :checked="rsvp" :id="id" :data-id="id" @input="handleInput(index, $event)")
               label.ml-4.text-lg(:for="id") {{ name }}
-            .invite__guest.flex.items-center.mb-2
+            .invite__guest.flex.items-center.mb-2(v-show="guests.length > 1")
               input(ref="inputs" type="checkbox" :checked="allRsvpNo" id="all" @input="updateAll")
               label.ml-4.text-lg(for="all") None of us will be able to attend
             button.block.text-white.px-4.py-3.rounded.mt-4(
@@ -39,6 +39,8 @@
 import debug from 'debug'
 import { mapActions, mapState } from 'vuex'
 
+import metadata from '../helpers/metadata.js'
+
 import Songs from '../components/Songs'
 import Ring from '../assets/icons/engagement-ring.svg'
 import Attending from '../assets/icons/checked.svg'
@@ -48,6 +50,16 @@ const log = debug('view:Invite')
 
 export default {
   name: 'Invite',
+  metaInfo: {
+    title: metadata.title.invite,
+    meta: [
+      { name: 'description', content: metadata.description.invite },
+      { property: 'og:title', content: metadata.title.invite },
+      { property: 'og:description', content: metadata.description.invite },
+      { property: 'twitter:title', content: metadata.title.invite },
+      { property: 'twitter:description', content: metadata.description.invite },
+    ],
+  },
   data () {
     return {
       loading: true,
