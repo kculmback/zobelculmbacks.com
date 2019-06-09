@@ -47,7 +47,7 @@ export default {
   name: 'Stripe',
   data () {
     return {
-      amount: 40.00,
+      amount: null,
       gift: 'honeymoon',
       other: null,
       note: '',

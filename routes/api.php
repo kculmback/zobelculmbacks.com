@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
 
+Route::post('/songs', 'SongsController@add');
+
 Route::prefix('/rsvp')->group(function () {
     Route::get('/search', 'RsvpController@search');
     Route::get('/{invite}', 'RsvpController@getInvite');

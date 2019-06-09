@@ -9,7 +9,7 @@
         stripe
       .text-center.py-8
         h2.text-center.mb-4.text-3xl Mailing Address
-        p 5329 N Monroe St
+        p 1117 W Mansfield
         p Spokane, WA 99205
       .py-8.text-center
         h2.text-center.text-3xl Online Registries

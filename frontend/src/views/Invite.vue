@@ -1,11 +1,20 @@
 <template lang="pug">
   .invite.pt-6.px-4
-    p.text-lg.text-center(v-if="loading") Getting invite information...
+    template(v-if="loading")
+      p.text-lg.text-center Getting invite information...
+      .text-center.pt-4
+        ring.invite__loading.w-16
     p.text-red-darker.text-center(v-else-if="error") Could not retrieve invite, please reload and try again. If the issue persists, contact Kasey or Kayla.
     template(v-else)
       h1.font-hand.text-4xl.text-center Hello#[span(v-if="name && name.length")  {{ name }}]!
       .my-6.max-w-sm.mx-auto(v-if="success || alreadyRsvped")
         p.text-center.text-lg.mb-3(:class="{ 'text-green-dark': success }") #[span(v-if="success") Success!] Thank you for RSVPing!
+        ul.invite__list.list-reset.text-center.my-4
+          li(v-for="guest in guests")
+            attending.inline.mr-2.w-4.green(v-if="!!guest.rsvp")
+            not-attending.inline.mr-2.w-3.red(v-else)
+            | {{ guest.name }}
+        hr.border-b.my-8
         p.text-center.text-lg.mb-6 If you have any song recommendations for us, please feel free to fill out and submit the form below.
         songs
       template(v-else)
@@ -31,6 +40,9 @@ import debug from 'debug'
 import { mapActions, mapState } from 'vuex'
 
 import Songs from '../components/Songs'
+import Ring from '../assets/icons/engagement-ring.svg'
+import Attending from '../assets/icons/checked.svg'
+import NotAttending from '../assets/icons/close.svg'
 
 const log = debug('view:Invite')
 
@@ -113,10 +125,32 @@ export default {
         this.loading = false
       })
   },
-  components: { Songs },
+  components: { Songs, Ring, Attending, NotAttending },
 }
 </script>
 
 <style lang="postcss" scoped>
-.invite {}
+.invite {
+  &__loading {
+    animation: rotate 2000ms linear infinite;
+  }
+
+  .green /deep/ path {
+    fill: config('colors.green-dark');
+  }
+
+  .red /deep/ path {
+    fill: config('colors.red-dark');
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>
