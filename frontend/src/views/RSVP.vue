@@ -1,5 +1,5 @@
 <template lang="pug">
-  .rsvp.pt-6
+  .rsvp.pt-6.px-6
     h1.text-center RSVP
     .max-w-md.mx-auto.my-6.text-center
       p Type your name in the field below; as you type it'll automatically search for your invitation and pull it up below.

@@ -14,7 +14,7 @@
             attending.inline.mr-2.w-4.green(v-if="!!guest.rsvp")
             not-attending.inline.mr-2.w-3.red(v-else)
             | {{ guest.name }}
-        hr.border-b.my-8
+        hr.hr-fade.mt-8.mb-6
         p.text-center.text-lg.mb-6 If you have any song recommendations for us, please feel free to fill out and submit the form below.
         songs
       template(v-else)
