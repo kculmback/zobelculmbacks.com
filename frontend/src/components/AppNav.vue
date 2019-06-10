@@ -13,15 +13,15 @@
       .nav__inner.rounder-circle.bg-white.absolute.text-center.z-20
         nav.absolute.center-both
           ul.list-reset
-            li.mb-3
+            li.mb-2(class="sm:mb-3")
               router-link.flex.items-center.justify-center.text-xl(
                 class="sm:text-2xl"
                 :to="{ name: 'RSVP' }"
                 @click.native="menuOpen = false"
               )
-                rsvp.w-8.mr-2(class="sm:w-10")
+                rsvp.w-7.mr-2(class="sm:w-10")
                 | RSVP
-            li.mb-3
+            li.mb-2(class="sm:mb-3")
               router-link.flex.items-center.justify-center.text-xl(
                 class="sm:text-2xl"
                 :to="{ name: 'Details' }"
@@ -29,29 +29,37 @@
               )
                 calendar.w-8.mr-2(class="sm:w-10")
                 | Day Of
-            li.mb-3
+            li.mb-2(class="sm:mb-3")
               router-link.flex.items-center.justify-center.text-xl(
                 class="sm:text-2xl"
                 :to="{ name: 'Activities' }"
                 @click.native="menuOpen = false"
               )
-                activities.w-8.mr-2(class="sm:w-10")
+                activities.w-7.mr-2(class="sm:w-10")
                 | Activities
-            li.mb-3
+            li.mb-2(class="sm:mb-3")
               router-link.flex.items-center.justify-center.text-xl(
                 class="sm:text-2xl"
                 :to="{ name: 'Accommodations' }"
                 @click.native="menuOpen = false"
               )
-                accommodations.w-8.mr-2(class="sm:w-10")
+                accommodations.w-6.mr-2(class="sm:w-10")
                 | Accommodations
+            li.mb-2(class="sm:mb-3")
+              router-link.flex.items-center.justify-center.text-xl(
+                class="sm:text-2xl"
+                :to="{ name: 'Story' }"
+                @click.native="menuOpen = false"
+              )
+                story.w-7.mr-2(class="sm:w-9")
+                | Our Story
             li
               router-link.flex.items-center.justify-center.text-xl(
                 class="sm:text-2xl"
                 :to="{ name: 'Registry' }"
                 @click.native="menuOpen = false"
               )
-                registry.w-8.mr-2(class="sm:w-10")
+                registry.w-7.mr-2(class="sm:w-10")
                 | Registry
 </template>
 
@@ -63,6 +71,7 @@ import Calendar from '@/assets/icons/calendar.svg'
 import Activities from '@/assets/icons/wedding-car.svg'
 import Accommodations from '@/assets/icons/honey-moon.svg'
 import Registry from '@/assets/icons/gifts.svg'
+import Story from '@/assets/icons/story.svg'
 import rsvp from '@/assets/icons/love-letter.svg'
 
 // const log = debug('component:AppNav')
@@ -74,7 +83,7 @@ export default {
       menuOpen: false,
     }
   },
-  components: { Ring, Calendar, Activities, Accommodations, Registry, rsvp },
+  components: { Ring, Calendar, Activities, Accommodations, Registry, Story, rsvp },
 }
 </script>
 

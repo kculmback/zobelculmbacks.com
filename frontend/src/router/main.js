@@ -4,6 +4,7 @@ const Home = () => import('../views/Home.vue')
 const Details = () => import('../views/Details.vue')
 const Activities = () => import('../views/Activities.vue')
 const Accommodations = () => import('../views/Accommodations.vue')
+const Story = () => import('../views/Story.vue')
 const Registry = () => import('../views/Registry.vue')
 const Success = () => import('../views/Success.vue')
 const RSVP = () => import('../views/RSVP.vue')
@@ -35,6 +36,11 @@ export default function defineRouter (store) {
       path: '/accommodations',
       name: 'Accommodations',
       component: Accommodations,
+    },
+    {
+      path: '/story',
+      name: 'Story',
+      component: Story,
     },
     {
       path: '/registry',
