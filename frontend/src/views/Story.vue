@@ -1,5 +1,7 @@
 <template lang="pug">
-  .story
+  .story.pt-8.px-6.max-w-lg.mx-auto
+    .story__section.mb-8.text-center
+      h1 Our Story
 </template>
 
 <script>
