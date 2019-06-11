@@ -45,7 +45,7 @@
               )
                 accommodations.w-6.mr-2(class="sm:w-10")
                 | Accommodations
-            li.mb-2(class="sm:mb-3")
+            //- li.mb-2(class="sm:mb-3")
               router-link.flex.items-center.justify-center.text-xl(
                 class="sm:text-2xl"
                 :to="{ name: 'Story' }"
