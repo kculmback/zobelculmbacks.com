@@ -18,4 +18,5 @@ Route::get('/activities', 'SiteController@main')->name('activities');
 Route::get('/accommodations', 'SiteController@main')->name('accommodations');
 Route::get('/registry', 'SiteController@main')->name('registry');
 Route::get('/rsvp', 'SiteController@main')->name('rsvp');
+Route::get('/invite/{id}', 'SiteController@main')->name('invite');
 Route::fallback('SiteController@main');
