@@ -1,13 +1,6 @@
 <template lang="pug">
   .topbar.fixed.pin-t.pin-l.w-full.flex.justify-between.items-center.h-16.bg-white.px-6.font-hand.text-2xl.text-grey-darkest.shadow
     router-link.text-grey-darkest(to="/" class="hover:text-black") ZobelCulmbacks 2019
-    button.hamburger.hamburger--spin(
-      type="button"
-      :class="{ 'hamburger--active': menuOpen }"
-      @click="menuOpen = !menuOpen"
-    )
-      span.hamburger__box
-        span.hamburger__inner
     .nav.absolute(:class="{ 'nav--active': menuOpen }")
       ring.nav__ring.z-10.relative
       .nav__inner.rounder-circle.bg-white.absolute.text-center.z-20
@@ -19,7 +12,7 @@
                 :to="{ name: 'RSVP' }"
                 @click.native="menuOpen = false"
               )
-                rsvp.w-7.mr-2(class="sm:w-10")
+                rsvp.w-7.h-7.mr-2(class="sm:w-10 sm:h-10")
                 | RSVP
             li.mb-2(class="sm:mb-3")
               router-link.flex.items-center.justify-center.text-xl(
@@ -27,7 +20,7 @@
                 :to="{ name: 'Details' }"
                 @click.native="menuOpen = false"
               )
-                calendar.w-8.mr-2(class="sm:w-10")
+                calendar.w-8.h-8.mr-2(class="sm:w-10 sm:h-10")
                 | Day Of
             li.mb-2(class="sm:mb-3")
               router-link.flex.items-center.justify-center.text-xl(
@@ -35,7 +28,7 @@
                 :to="{ name: 'Activities' }"
                 @click.native="menuOpen = false"
               )
-                activities.w-7.mr-2(class="sm:w-10")
+                activities.w-7.h-7.mr-2(class="sm:w-10 sm:w-10")
                 | Activities
             li.mb-2(class="sm:mb-3")
               router-link.flex.items-center.justify-center.text-xl(
@@ -43,24 +36,23 @@
                 :to="{ name: 'Accommodations' }"
                 @click.native="menuOpen = false"
               )
-                accommodations.w-6.mr-2(class="sm:w-10")
+                accommodations.w-6.h-6.mr-2(class="sm:w-10 sm:h-10")
                 | Accommodations
-            //- li.mb-2(class="sm:mb-3")
-              router-link.flex.items-center.justify-center.text-xl(
-                class="sm:text-2xl"
-                :to="{ name: 'Story' }"
-                @click.native="menuOpen = false"
-              )
-                story.w-7.mr-2(class="sm:w-9")
-                | Our Story
             li
               router-link.flex.items-center.justify-center.text-xl(
                 class="sm:text-2xl"
                 :to="{ name: 'Registry' }"
                 @click.native="menuOpen = false"
               )
-                registry.w-7.mr-2(class="sm:w-10")
+                registry.w-7.h-7.mr-2(class="sm:w-10 sm:h-10")
                 | Registry
+    button.hamburger.hamburger--spin(
+      type="button"
+      :class="{ 'hamburger--active': menuOpen }"
+      @click="menuOpen = !menuOpen"
+    )
+      span.hamburger__box
+        span.hamburger__inner
 </template>
 
 <script>
@@ -83,7 +75,15 @@ export default {
       menuOpen: false,
     }
   },
-  components: { Ring, Calendar, Activities, Accommodations, Registry, Story, rsvp },
+  components: {
+    Ring,
+    Calendar,
+    Activities,
+    Accommodations,
+    Registry,
+    Story,
+    rsvp,
+  },
 }
 </script>
 
@@ -102,6 +102,7 @@ export default {
   &__ring {
     max-width: 100vw;
     width: 550px;
+    height: 550px;
     transform: rotate(-120deg);
   }
 

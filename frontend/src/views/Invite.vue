@@ -11,8 +11,8 @@
         p.text-center.text-lg.mb-3(:class="{ 'text-green-dark': success }") #[span(v-if="success") Success!] Thank you for RSVPing!
         ul.invite__list.list-reset.text-center.my-4
           li(v-for="guest in guests")
-            attending.inline.mr-2.w-4.green(v-if="!!guest.rsvp")
-            not-attending.inline.mr-2.w-3.red(v-else)
+            attending.inline.mr-2.w-4.h-4.green(v-if="!!guest.rsvp")
+            not-attending.inline.mr-2.w-3.h-3.red(v-else)
             | {{ guest.name }}
         hr.hr-fade.mt-8.mb-6
         p.text-center.text-lg.mb-6 If you have any song recommendations for us, please feel free to fill out and submit the form below.
@@ -22,10 +22,25 @@
         .my-4.max-w-xs.mx-auto
           form.invite__form(@submit.prevent="handleSubmit")
             .invite__guest.flex.items-center.mb-2(v-for="({ name, rsvp, id }, index) in guests")
-              input(ref="inputs" type="checkbox" :checked="rsvp" :id="id" :data-id="id" @input="handleInput(index, $event)")
+              input(
+                ref="inputs"
+                type="checkbox"
+                :checked="rsvp"
+                :id="id"
+                :data-id="id"
+                @input="handleInput(index, $event)"
+                @change="handleInput(index, $event)"
+              )
               label.ml-4.text-lg(:for="id") {{ name }}
             .invite__guest.flex.items-center.mb-2(v-show="guests.length > 1")
-              input(ref="inputs" type="checkbox" :checked="allRsvpNo" id="all" @input="updateAll")
+              input(
+                ref="inputs"
+                type="checkbox"
+                :checked="allRsvpNo"
+                id="all"
+                @input="updateAll"
+                @change="updateAll"
+              )
               label.ml-4.text-lg(for="all") None of us will be able to attend
             button.block.text-white.px-4.py-3.rounded.mt-4(
               type="submit"
@@ -84,7 +99,9 @@ export default {
     },
 
     allRsvpNo () {
-      return this.guests.every(guest => guest.rsvp === false || guest.rsvp === 0)
+      return this.guests.every(
+        guest => guest.rsvp === false || guest.rsvp === 0
+      )
     },
   },
   methods: {
@@ -95,7 +112,9 @@ export default {
 
     updateAll (event) {
       if (event.target.checked === true) {
-        this.guests.forEach(guest => { guest.rsvp = false })
+        this.guests.forEach(guest => {
+          guest.rsvp = false
+        })
       }
     },
 
@@ -111,12 +130,16 @@ export default {
       })
 
       this.rsvp({ rsvps, id: this.$route.params.invite_id })
-        .then(() => { this.success = true })
+        .then(() => {
+          this.success = true
+        })
         .catch(error => {
           log(error)
           this.submitError = true
         })
-        .finally(() => { this.submitting = false })
+        .finally(() => {
+          this.submitting = false
+        })
     },
 
     checkIfAlreadyRsvped () {
