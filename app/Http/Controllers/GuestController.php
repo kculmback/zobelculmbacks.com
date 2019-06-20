@@ -12,9 +12,22 @@ class GuestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $take = $request->input('take') ?? 15;
+        $status = $request->input('status');
+
+        if ($status === 'yes') {
+            $guests = Guest::rsvpedYes()->simplePaginate($take);
+        } else if ($status === 'no') {
+            $guests = Guest::rsvpedNo()->simplePaginate($take);
+        } else if ($status === 'hasnt') {
+            $guests = Guest::hasntRsvped()->simplePaginate($take);
+        } else {
+            $guests = Guest::simplePaginate($take);
+        }
+
+        return response()->json($guests);
     }
 
     /**

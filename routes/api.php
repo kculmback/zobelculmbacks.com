@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::post('/songs', 'SongsController@add');
@@ -26,11 +25,13 @@ Route::prefix('/rsvp')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
+    Route::post('/register', 'Auth\RegisterController@register');
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
     Route::resource('invites', 'InviteController');
+    Route::get('/guests', 'GuestController@index');
 });
 
 Route::post('stripe', 'StripeController@payment');

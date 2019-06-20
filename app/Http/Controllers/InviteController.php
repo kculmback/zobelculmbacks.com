@@ -25,6 +25,19 @@ class InviteController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Invite  $invite
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Invite $invite)
+    {
+        $invite->load('guests');
+
+        return response()->json($invite);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,19 +65,6 @@ class InviteController extends Controller
     {
         $invite->guests()->createMany($guests);
         return $invite;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Invite  $invite
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Invite $invite)
-    {
-        $invite->load('guests');
-
-        return response()->json($invite);
     }
 
     /**

@@ -1,19 +1,17 @@
 version: '3.4'
 
-x-frontend:
-  &default-frontend
+x-frontend: &default-frontend
   build:
     context: frontend/.
     dockerfile: frontend.Dockerfile
   volumes:
     - ./frontend:/usr/src/app
-    -  /usr/src/app/node_modules
+    - /usr/src/app/node_modules
   environment:
     - NODE_ENV=dev
   networks:
     - proxy
     - local
-
 
 services:
   app:
@@ -38,24 +36,25 @@ services:
       - mailhog
     labels:
       - traefik.app.frontend.rule=Host:backend-zobelculmbacks.${DEV_DOMAIN}
-      - traefik.dev.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN};PathPrefix:/admin,/vendor/,/storage,/api,/uploads,/svg
+      - traefik.dev.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN};PathPrefix:/vendor/,/storage,/api,/uploads,/svg
+      - traefik.dev.frontend.rule=Host:admin-zobelculmbacks.${DEV_DOMAIN};PathPrefix:/vendor/,/storage,/api,/uploads,/svg
       - traefik.docker.network=proxy
 
   frontend:
-    << : *default-frontend
+    <<: *default-frontend
     command: npm run serve:main
     labels:
       - traefik.port=3000
       - traefik.docker.network=proxy
-      - "traefik.mainfront.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN}"
+      - 'traefik.mainfront.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN}'
 
   admin:
-    << : *default-frontend
+    <<: *default-frontend
     command: npm run serve:admin
     labels:
       - traefik.port=3000
       - traefik.docker.network=proxy
-      - "traefik.mainfront.frontend.rule=Host:admin-zobelculmbacks.${DEV_DOMAIN}"
+      - 'traefik.mainfront.frontend.rule=Host:admin-zobelculmbacks.${DEV_DOMAIN}'
 
   mysql:
     image: 'mysql:5.7'

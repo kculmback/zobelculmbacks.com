@@ -31,15 +31,15 @@ class RegisterController extends AuthController
      */
     protected $redirectTo = '/admin';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    // /**
+    //  * Create a new controller instance.
+    //  *
+    //  * @return void
+    //  */
+    // public function __construct()
+    // {
+
+    // }
 
     /**
      * Get a validator for an incoming registration request.
@@ -83,9 +83,7 @@ class RegisterController extends AuthController
 
         event(new Registered($user = $this->create($request->all())));
 
-        $token = $this->guard()->login($user);
-
-        return $this->registered($request, $user, $token)
+        return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
 
@@ -96,8 +94,12 @@ class RegisterController extends AuthController
      * @param  mixed  $user
      * @return mixed
      */
-    protected function registered(Request $request, $user, $token)
+    protected function registered(Request $request, $user)
     {
-        return $this->respondWithToken($token);
+        // return $this->respondWithToken($token);
+        return response()->json([
+            'message' => 'success',
+            'user' => $user,
+        ]);
     }
 }
