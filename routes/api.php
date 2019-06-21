@@ -30,8 +30,9 @@ Route::middleware('auth:api')->group(function () {
         return $request->user();
     });
 
-    Route::resource('invites', 'InviteController');
-    Route::get('/guests', 'GuestController@index');
+    Route::resource('invites', 'Admin\InviteController');
+    Route::get('/guests', 'Admin\GuestController@index');
+    Route::get('/guests/count', 'Admin\GuestController@getCount');
 });
 
 Route::post('stripe', 'StripeController@payment');

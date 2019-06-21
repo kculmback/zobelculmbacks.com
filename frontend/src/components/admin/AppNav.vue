@@ -1,6 +1,13 @@
 <template lang="pug">
   .topbar.fixed.pin-t.pin-l.w-full.flex.justify-between.items-center.h-16.bg-white.px-6.font-hand.text-2xl.text-grey-darkest.shadow
     router-link.text-grey-darkest(to="/" class="hover:text-black") ZobelCulmbacks Dashboard
+    .nav.bg-white.shadow.absolute.pin-r.py-4.px-8(v-if="menuOpen")
+      nav
+        ul.list-reset
+          li.mb-4
+            router-link(:to="{ name: 'Dashboard' }") Dashboard
+          li
+            router-link(:to="{ name: 'Rsvps' }") RSVPs
     button.hamburger.hamburger--spin(
       type="button"
       :class="{ 'hamburger--active': menuOpen }"
@@ -26,7 +33,9 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.root {}
+.nav {
+  top: 4rem;
+}
 </style>
 
 <style lang="scss" scoped>

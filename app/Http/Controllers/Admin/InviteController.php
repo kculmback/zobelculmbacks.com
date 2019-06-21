@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Invite;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateInviteRequest;
 use App\Models\Guest;
+use App\Http\Controllers\Controller;
 
 class InviteController extends Controller
 {

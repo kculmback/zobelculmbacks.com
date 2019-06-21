@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Guest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class GuestController extends Controller
 {
@@ -18,16 +19,33 @@ class GuestController extends Controller
         $status = $request->input('status');
 
         if ($status === 'yes') {
-            $guests = Guest::rsvpedYes()->simplePaginate($take);
+            $guests = Guest::rsvpedYes()->get();
         } else if ($status === 'no') {
-            $guests = Guest::rsvpedNo()->simplePaginate($take);
+            $guests = Guest::rsvpedNo()->get();
         } else if ($status === 'hasnt') {
-            $guests = Guest::hasntRsvped()->simplePaginate($take);
+            $guests = Guest::hasntRsvped()->get();
         } else {
-            $guests = Guest::simplePaginate($take);
+            $guests = Guest::all();
         }
 
-        return response()->json($guests);
+        return response()->json(['guests' => $guests]);
+    }
+
+    public function getCount(Request $request)
+    {
+        $status = $request->input('status');
+
+        if ($status === 'yes') {
+            $count = count(Guest::rsvpedYes()->get());
+        } else if ($status === 'no') {
+            $count = count(Guest::rsvpedNo()->get());
+        } else if ($status === 'hasnt') {
+            $count = count(Guest::hasntRsvped()->get());
+        } else {
+            $count = count(Guest::all());
+        }
+
+        return response()->json(['count' => $count]);
     }
 
     /**
