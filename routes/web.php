@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('admin', 'SiteController@admin');
+Route::get('admin/{wildcard}', 'SiteController@admin');
+// Route::prefix('admin')->group(function () {
+//     Route::fallback('SiteController@admin');
+// });
+
 Route::get('/details', 'SiteController@main')->name('details');
 Route::get('/activities', 'SiteController@main')->name('activities');
 Route::get('/accommodations', 'SiteController@main')->name('accommodations');

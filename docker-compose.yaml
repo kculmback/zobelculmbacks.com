@@ -36,8 +36,8 @@ services:
       - mailhog
     labels:
       - traefik.app.frontend.rule=Host:backend-zobelculmbacks.${DEV_DOMAIN}
-      - traefik.dev.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN};PathPrefix:/vendor/,/storage,/api,/uploads,/svg
-      - traefik.dev.frontend.rule=Host:admin-zobelculmbacks.${DEV_DOMAIN};PathPrefix:/vendor/,/storage,/api,/uploads,/svg
+      # - traefik.dev.frontend.rule=Host:zobelculmbacks.${DEV_DOMAIN};PathPrefix:/vendor/,/storage,/api,/uploads,/svg
+      # - traefik.dev.frontend.rule=Host:admin-zobelculmbacks.${DEV_DOMAIN};PathPrefix:/vendor/,/storage,/api,/uploads,/svg
       - traefik.docker.network=proxy
 
   frontend:

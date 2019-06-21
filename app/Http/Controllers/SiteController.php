@@ -18,4 +18,11 @@ class SiteController extends Controller
         $meta_description = config("metadata.description.{$name}");
         return view('main')->with(compact('meta_title', 'meta_description'));
     }
+
+    public function admin()
+    {
+        $meta_title = 'Admin';
+        $meta_description = 'Admin';
+        return view('admin')->with(compact('meta_title', 'meta_description'));
+    }
 }
