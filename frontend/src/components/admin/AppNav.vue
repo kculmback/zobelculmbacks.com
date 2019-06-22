@@ -5,9 +5,15 @@
       nav
         ul.list-reset
           li.mb-4
-            router-link(:to="{ name: 'Dashboard' }") Dashboard
+            router-link(
+              :to="{ name: 'Invites' }"
+              @click.native="menuOpen = false"
+            ) Invites
           li
-            router-link(:to="{ name: 'Rsvps' }") RSVPs
+            router-link(
+              :to="{ name: 'Rsvps' }"
+              @click.native="menuOpen = false"
+            ) RSVPs
     button.hamburger.hamburger--spin(
       type="button"
       :class="{ 'hamburger--active': menuOpen }"

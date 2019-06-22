@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Invite;
 
 class GuestController extends Controller
 {
@@ -15,20 +16,24 @@ class GuestController extends Controller
      */
     public function index(Request $request)
     {
-        $take = $request->input('take') ?? 15;
+        // $take = $request->input('take') ?? 15;
         $status = $request->input('status');
 
-        if ($status === 'yes') {
-            $guests = Guest::rsvpedYes()->get();
-        } else if ($status === 'no') {
-            $guests = Guest::rsvpedNo()->get();
-        } else if ($status === 'hasnt') {
-            $guests = Guest::hasntRsvped()->get();
-        } else {
-            $guests = Guest::all();
-        }
+        $closure = function ($query) use ($status) {
+            if ($status === 'yes') {
+                $query->rsvpedYes();
+            } elseif ($status === 'no') {
+                $query->rsvpedNo();
+            } elseif ($status === 'hasnt') {
+                $query->hasntRsvped();
+            }
+        };
 
-        return response()->json(['guests' => $guests]);
+        $invites = Invite::whereHas('guests', $closure)
+            ->with(['guests' => $closure])
+            ->get();
+
+        return response()->json(['invites' => $invites]);
     }
 
     public function getCount(Request $request)

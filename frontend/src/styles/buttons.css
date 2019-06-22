@@ -1,0 +1,15 @@
+.btn {
+  @apply bg-blue text-white px-4 py-3 rounded;
+
+  &:hover {
+    @apply bg-blue-dark text-white;
+  }
+
+  &--green {
+    @apply bg-green;
+
+    &:hover {
+      @apply bg-green-dark;
+    }
+  }
+}

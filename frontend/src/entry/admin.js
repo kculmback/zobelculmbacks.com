@@ -4,7 +4,7 @@ import defineRouter from './../router/admin'
 import App from '@/views/admin/App.vue'
 
 // import '@/styles/main.css'
-import './../styles/admin/main.css'
+import './../styles/main.css'
 
 const router = defineRouter(store)
 

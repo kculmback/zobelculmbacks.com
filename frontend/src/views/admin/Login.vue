@@ -15,14 +15,16 @@
 import { mapActions } from 'vuex'
 // import debug from 'debug'
 
+import config from '../../config'
+
 // const log = debug('view:Login')
 
 export default {
   name: 'Login',
   data () {
     return {
-      email: 'kasey.culmback@gmail.com',
-      password: 'password',
+      email: config.get('isLocal') ? 'kasey.culmback@gmail.com' : '',
+      password: config.get('isLocal') ? 'password' : '',
       submitting: false,
     }
   },
@@ -33,7 +35,7 @@ export default {
         email: this.email,
         password: this.password,
       }).then(() => {
-        this.$router.push({ name: 'Dashboard' })
+        this.$router.push({ name: 'Rsvps' })
       })
     },
   },

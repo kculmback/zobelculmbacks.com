@@ -1,24 +1,22 @@
 <template lang="pug">
-  .dashboard
+  .invites
     .dashboad__loading(v-if="loading")
       p Loading...
     template(v-else-if="invites.length")
-      .dashboard__invites
+      .invites__invites
         .invite.border-grey-lighter.border.rounded.p-4.shadow-md.mb-4(v-for="{ guests, id } in invites")
           .invite__guests.flex.justify-between.items-center
             div
               span.text-grey-dark(v-for="({ name }, index) in guests") {{ name }}{{ index + 1 === guests.length ? '' : ', ' }}
-            router-link.bg-blue.text-white.px-2.py-3.rounded(:to="{ name: 'Invite', params: { id } }" class="hover:bg-blue-dark hover:text-white") See Invite
-      .dashboard__pagination.flex.justify-center.pt-4
-        router-link.bg-blue.text-white.px-4.py-3.rounded.mr-4(
-          :to="{ name: 'Dashboard', query: { page: page - 1 } }"
+            router-link.btn(:to="{ name: 'Invite', params: { id } }") See Invite
+      .invites__pagination.flex.justify-center.pt-4
+        router-link.btn.mr-4(
+          :to="{ name: 'Invites', query: { page: page - 1 } }"
           v-if="page !== 1"
-          class="hover:bg-blue-dark hover:text-white"
         ) Previous
-        router-link.bg-blue.text-white.px-4.py-3.rounded(
-          :to="{ name: 'Dashboard', query: { page: nextPageNumber } }"
+        router-link.btn(
+          :to="{ name: 'Invites', query: { page: nextPageNumber } }"
           v-if="page !== nextPageNumber"
-          class="hover:bg-blue-dark hover:text-white"
         ) Next
 </template>
 
@@ -26,10 +24,10 @@
 import { mapActions, mapState } from 'vuex'
 // import debug from 'debug'
 
-// const log = debug('component:Dashboard')
+// const log = debug('view:Invites')
 
 export default {
-  name: 'Dashboard',
+  name: 'Invites',
   data () {
     return {
       loading: false,

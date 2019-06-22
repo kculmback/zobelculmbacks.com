@@ -1,29 +1,28 @@
 <template lang="pug">
   .rsvps.max-w-md.w-full.mx-auto
-    .rsvps__counts.border-grey-lighter.border.rounded.p-4.shadow-md.text-center.flex.justify-between.mb-8
-      .rsvps__count.rsvps__coming.text-green-dark
-        span Coming
-        br
+    .rsvps__counts.border-grey-lighter.border.rounded.p-4.shadow-md.text-center.flex.flex-col.justify-between.mb-8(class="md:flex-row")
+      .rsvps__count.rsvps__coming.text-green-dark.flex.mb-2.items-center(class="md:flex-col md:mb-0")
+        span.mr-2(class="md:mr-0") Coming
         span {{ coming }}
-      .rsvps__count.rsvps__not-coming.text-red-dark
-        span Not Coming
-        br
+      .rsvps__count.rsvps__not-coming.text-red-dark.flex.mb-2.items-center(class="md:flex-col md:mb-0")
+        span.mr-2(class="md:mr-0") Not Coming
         span {{ notComing }}
-      .rsvps__count.rsvps__hasnt-responded
-        span Hasn't Responded
-        br
+      .rsvps__count.rsvps__hasnt-responded.flex.items-center(class="md:flex-col md:mb-0")
+        span.mr-2(class="md:mr-0") Hasn't Responded
         span {{ hasntResponded }}
     .rsvps__counts.border-grey-lighter.border.rounded.p-4.shadow-md
       form(@submit.prevent="getRsvps")
-        select(ref="selectStatus" required)
-          option(disabled selected value="false") Get RSVPs
+        select.mr-4.py-2.px-3.rounded.bg-grey-lighter(ref="selectStatus" required)
+          option(disabled selected value="false") Select Status
           option(value="yes") Coming
           option(value="no") Not Coming
           option(value="hasnt") Hasn't Responded
-        button(type="submit") Get RSVPs
-      .rsvps__list.pt-4(v-if="guests")
-        .rsvps__guest.mb-3(v-for="guest in guests")
-          span {{ guest.name }}
+        button.btn(type="submit") Get RSVPs
+      .rsvps__list.pt-4(v-if="invites")
+        template(v-for="{ guests } in invites")
+          ul.rsvps__invite.mb-3.list-reset
+            li(v-for="guest in guests") {{ guest.name }}
+          hr.border
 
 </template>
 
@@ -40,7 +39,7 @@ export default {
       coming: 0,
       notComing: 0,
       hasntResponded: 0,
-      guests: null,
+      invites: null,
     }
   },
   created () {
@@ -84,7 +83,7 @@ export default {
           params: { status },
         })
         .then(response => {
-          this.guests = response.data.guests
+          this.invites = response.data.invites
         })
     },
   },

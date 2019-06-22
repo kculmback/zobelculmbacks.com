@@ -1,5 +1,5 @@
 import initRouter from './index'
-import Dashboard from '@/views/admin/Dashboard.vue'
+import Invites from '@/views/admin/Invites.vue'
 import Login from '@/views/admin/Login.vue'
 import Invite from '@/views/admin/Invite.vue'
 import EditInvite from '@/views/admin/EditInvite.vue'
@@ -18,15 +18,15 @@ export default function defineRouter (store) {
       component: Login,
     },
     {
-      path: '/',
-      name: 'Dashboard',
-      component: Dashboard,
+      path: '/invites',
+      name: 'Invites',
+      component: Invites,
       meta: {
         requiresAuth: true,
       },
     },
     {
-      path: '/rsvps',
+      path: '/',
       name: 'Rsvps',
       component: Rsvps,
       meta: {
