@@ -9,11 +9,16 @@
               :to="{ name: 'Invites' }"
               @click.native="menuOpen = false"
             ) Invites
-          li
+          li.mb-4
             router-link(
               :to="{ name: 'Rsvps' }"
               @click.native="menuOpen = false"
             ) RSVPs
+          li
+            router-link(
+              :to="{ name: 'Login' }"
+              @click.native="handleLogout"
+            ) Logout
     button.hamburger.hamburger--spin(
       type="button"
       :class="{ 'hamburger--active': menuOpen }"
@@ -24,6 +29,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 // import debug from 'debug'
 
 // const log = debug('component:AppNav')
@@ -34,6 +40,13 @@ export default {
     return {
       menuOpen: false,
     }
+  },
+  methods: {
+    ...mapActions('admin', ['logout']),
+    handleLogout () {
+      this.menuOpen = false
+      this.logout()
+    },
   },
 }
 </script>

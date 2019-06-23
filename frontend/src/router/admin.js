@@ -5,6 +5,8 @@ import Invite from '@/views/admin/Invite.vue'
 import EditInvite from '@/views/admin/EditInvite.vue'
 import Rsvps from '@/views/admin/Rsvps.vue'
 
+import { assertAlive } from '../helpers/token'
+
 /**
  * @function defineRouter
  *
@@ -52,6 +54,10 @@ export default function defineRouter (store) {
   ]
 
   const beforeEach = (to, from, next) => {
+    if (store.state.admin.token && !assertAlive(store.state.admin.token)) {
+      store.dispatch('admin/logout')
+    }
+
     if (to.matched.some(record => record.meta.requiresAuth)) {
       if (!store.state.admin.token) {
         next({ name: 'Login' })

@@ -1,5 +1,7 @@
 // import debug from 'debug'
+import Cookies from 'js-cookie'
 import axios from '../../helpers/axios'
+import { tokenExpiration } from '../../helpers/token'
 
 // let log = debug('store:stripe')
 
@@ -9,7 +11,7 @@ const admin = {
   namespaced: true,
 
   state: {
-    token: null,
+    token: Cookies.get('token'),
     invites: [],
     page: null,
     nextPage: null,
@@ -18,6 +20,17 @@ const admin = {
   mutations: {
     SET_AUTH_TOKEN (state, token) {
       state.token = token
+      console.log(state.token)
+
+      if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        Cookies.set('token', token, {
+          expires: tokenExpiration(token),
+        })
+      } else {
+        delete axios.defaults.headers.common['Authorization']
+        Cookies.remove('token')
+      }
     },
 
     SET_INVITES (state, { invites, page, nextPage }) {
@@ -36,12 +49,15 @@ const admin = {
           .post('login', data)
           .then(response => {
             const token = response.data.access_token
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
             commit('SET_AUTH_TOKEN', token)
             resolve()
           })
           .catch(error => reject(error))
       })
+    },
+
+    logout ({ commit }) {
+      commit('SET_AUTH_TOKEN', null)
     },
 
     getInvite (context, id) {
