@@ -21,4 +21,17 @@ class SongsController extends Controller
 
         return response(['message' => 'success']);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $take = $request->input('take') ?? 15;
+
+        return response()
+            ->json(Song::simplePaginate($take));
+    }
 }

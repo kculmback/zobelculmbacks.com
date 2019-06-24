@@ -33,6 +33,8 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('invites', 'Admin\InviteController');
     Route::get('/guests', 'Admin\GuestController@index');
     Route::get('/guests/count', 'Admin\GuestController@getCount');
+
+    Route::get('/songs', 'SongsController@index');
 });
 
 Route::post('stripe', 'StripeController@payment');
