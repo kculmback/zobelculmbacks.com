@@ -14,6 +14,11 @@
               :to="{ name: 'Rsvps' }"
               @click.native="menuOpen = false"
             ) RSVPs
+          li.mb-4
+            router-link(
+              :to="{ name: 'Songs' }"
+              @click.native="menuOpen = false"
+            ) Songs
           li
             router-link(
               :to="{ name: 'Login' }"
