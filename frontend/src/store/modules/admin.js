@@ -20,7 +20,6 @@ const admin = {
   mutations: {
     SET_AUTH_TOKEN (state, token) {
       state.token = token
-      console.log(state.token)
 
       if (token) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`

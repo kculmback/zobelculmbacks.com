@@ -12,6 +12,7 @@
         "algolia/algoliasearch-client-php": "^2.2",
         "cartalyst/stripe-laravel": "9.0.*",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.7.*",
         "laravel/scout": "^7.1",
         "laravel/tinker": "^1.0",

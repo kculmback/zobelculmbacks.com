@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Carbon\Carbon;
 
 class Guest extends Model
 {
@@ -69,6 +70,33 @@ class Guest extends Model
     public function scopeHasntRsvped($query)
     {
         return $query->where('rsvp', null);
+    }
+
+    /**
+     * Scope a query to only include active users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUpdatedPastWeek($query)
+    {
+        return $query->whereDate('updated_at', '>=', Carbon::now()->subWeek());
+    }
+
+    /**
+     * Get user friendly RSVP status.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getPrettyRsvpAttribute($value)
+    {
+        if ($this->rsvp === 1) {
+            return 'yes';
+        } elseif ($this->rsvp === 0) {
+            return 'no';
+        }
+        return 'maybe';
     }
 
     public function invite()

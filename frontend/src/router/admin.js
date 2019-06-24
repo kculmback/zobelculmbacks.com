@@ -4,6 +4,7 @@ import Login from '@/views/admin/Login.vue'
 import Invite from '@/views/admin/Invite.vue'
 import EditInvite from '@/views/admin/EditInvite.vue'
 import Rsvps from '@/views/admin/Rsvps.vue'
+import Songs from '@/views/admin/Songs.vue'
 
 import { assertAlive } from '../helpers/token'
 
@@ -31,6 +32,14 @@ export default function defineRouter (store) {
       path: '/',
       name: 'Rsvps',
       component: Rsvps,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/songs',
+      name: 'Songs',
+      component: Songs,
       meta: {
         requiresAuth: true,
       },
