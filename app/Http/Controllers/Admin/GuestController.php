@@ -19,19 +19,30 @@ class GuestController extends Controller
         // $take = $request->input('take') ?? 15;
         $status = $request->input('status');
 
-        $closure = function ($query) use ($status) {
-            if ($status === 'yes') {
-                $query->rsvpedYes();
-            } elseif ($status === 'no') {
-                $query->rsvpedNo();
-            } elseif ($status === 'hasnt') {
-                $query->hasntRsvped();
-            }
-        };
+        // $closure = function ($query) use ($status) {
+        //     if ($status === 'yes') {
+        //         $query->rsvpedYes();
+        //     } elseif ($status === 'no') {
+        //         $query->rsvpedNo();
+        //     } elseif ($status === 'hasnt') {
+        //         $query->hasntRsvped();
+        //     }
+        // };
 
-        $invites = Invite::whereHas('guests', $closure)
-            ->with(['guests' => $closure])
-            ->get();
+        // $invites = Invite::whereHas('guests', $closure)
+        //     ->with(['guests' => $closure])
+        //     ->get();
+        if ($status = 'yes') {
+            $query = Guest::rsvpedYes();
+        } elseif ($status === 'no') {
+            $query = Guest::rsvpedNo();
+        } else {
+            $query = Guest::hasntRsvped();
+        }
+        $invites = $query
+            ->orderBy('updated_at', 'desc')
+            ->get()
+            ->groupBy('invite_id');
 
         return response()->json(['invites' => $invites]);
     }
