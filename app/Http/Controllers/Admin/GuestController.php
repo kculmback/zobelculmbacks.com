@@ -43,8 +43,13 @@ class GuestController extends Controller
             ->orderBy('updated_at', 'desc')
             ->get()
             ->groupBy('invite_id');
+        $invitesArray = [];
 
-        return response()->json(['invites' => $invites]);
+        foreach ($invites as $key => $value) {
+            $invitesArray[] = $value;
+        }
+
+        return response()->json(['invites' => $invitesArray]);
     }
 
     public function getCount(Request $request)
