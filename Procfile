@@ -1,2 +1,2 @@
 web: vendor/bin/heroku-php-apache2 public/
-cron: bin/cron
+cron: bin/cron.sh
