@@ -26,6 +26,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('rsvp:update')
             ->weeklyOn(0, '00:01');
+
+        $schedule->command('rsvp:update')->everyFiveMinutes();
     }
 
     /**
