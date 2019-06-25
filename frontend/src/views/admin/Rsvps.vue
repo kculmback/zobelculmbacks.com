@@ -19,10 +19,10 @@
           option(value="hasnt") Hasn't Responded
         button.btn(type="submit") Get RSVPs
       .rsvps__list.pt-4(v-if="invites")
-        template(v-for="(guests, name, index) in invites")
-          ul.rsvps__invite.list-reset(:class="{ 'mb-3': index + 1 !== Object.keys(invites).length }")
+        template(v-for="(guests, index) in invites")
+          ul.rsvps__invite.list-reset(:class="{ 'mb-3': index + 1 !== invites.length }")
             li(v-for="guest in guests") {{ guest.name }}
-          hr.border(v-if="index + 1 !== Object.keys(invites).length")
+          hr.border(v-if="index + 1 !== invites.length")
 
 </template>
 
