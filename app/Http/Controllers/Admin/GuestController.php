@@ -32,7 +32,7 @@ class GuestController extends Controller
         // $invites = Invite::whereHas('guests', $closure)
         //     ->with(['guests' => $closure])
         //     ->get();
-        if ($status = 'yes') {
+        if ($status === 'yes') {
             $query = Guest::rsvpedYes();
         } elseif ($status === 'no') {
             $query = Guest::rsvpedNo();
