@@ -16,6 +16,11 @@ class SongsController extends Controller
             $new_song = new Song();
             $new_song->name = $song['name'];
             $new_song->artist = $song['artist'];
+
+            if ($request->input('invite_id')) {
+                $new_song->invite_id = $request->input('invite_id');
+            }
+
             $new_song->save();
         }
 
@@ -32,6 +37,6 @@ class SongsController extends Controller
         $take = $request->input('take') ?? 15;
 
         return response()
-            ->json(Song::simplePaginate($take));
+            ->json(Song::with('invite.guests')->simplePaginate($take));
     }
 }
