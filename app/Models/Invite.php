@@ -20,4 +20,9 @@ class Invite extends Model
     {
         return $this->hasMany('App\Models\Guest');
     }
+
+    public function songs()
+    {
+        return $this->hasMany('App\Models\Song');
+    }
 }

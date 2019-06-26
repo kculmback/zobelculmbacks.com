@@ -1,17 +1,20 @@
 <template lang="pug">
-  .songs
+  .songs.max-w-xl.mx-auto
     .songs__loading(v-if="loading")
       p Loading...
     template(v-else-if="songs.length")
       .songs__song-list
-        .songs__song.border-grey-lighter.border.rounded.p-4.shadow-md.mb-4(v-for="{ name, artist } in songs")
-          .flex
-            .songs__name(class="w-1/2")
+        .songs__song.border-grey-lighter.border.rounded.p-4.shadow-md.mb-4(v-for="{ name, artist, invite } in songs")
+          .flex.flex-wrap
+            .songs__name(class="w-1/2 md:w-1/3")
               p.font-bold.text-xs.text-grey-darker.mb-1 Song Name
               p {{ name }}
-            .songs__artist(class="w-1/2")
+            .songs__artist(class="w-1/2 md:w-1/3")
               p.font-bold.text-xs.text-grey-darker.mb-1 Song Artist
               p {{ artist }}
+            .songs__guest(class="w-full md:w-1/3 mt-4 md:mt-0")
+              p.font-bold.text-xs.text-grey-darker.mb-1 Guest
+              p(v-if="invite") {{ invite.guests[0].name }}
       .songs__pagination.flex.justify-center.pt-4
         router-link.btn.mr-4(
           :to="{ name: 'Songs', query: { page: page - 1 } }"

@@ -26,6 +26,7 @@ class SongsRequest extends FormRequest
         return [
             'songs.*.name' => 'required|string',
             'songs.*.artist' => 'required|string',
+            'invite_id' => 'nullable|integer',
         ];
     }
 

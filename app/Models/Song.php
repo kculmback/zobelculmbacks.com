@@ -23,4 +23,9 @@ class Song extends Model
      * @var array
      */
     protected $fillable = ['name', 'artist'];
+
+    public function invite()
+    {
+        return $this->belongsTo('App\Models\Invite');
+    }
 }

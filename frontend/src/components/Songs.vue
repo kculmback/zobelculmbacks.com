@@ -60,7 +60,11 @@ export default {
       this.submitError = false
       this.success = false
 
-      axios.post('songs', { songs: this.songs })
+      axios
+        .post('songs', {
+          songs: this.songs,
+          invite_id: parseInt(this.$route.params.invite_id),
+        })
         .then(response => {
           log(response)
           this.success = true
