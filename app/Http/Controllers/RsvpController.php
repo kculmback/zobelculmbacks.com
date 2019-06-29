@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Guest;
 use App\Models\Invite;
 use App\Http\Requests\RsvpRequest;
+use App\Events\Rsvp;
 
 class RsvpController extends Controller
 {
@@ -41,6 +42,8 @@ class RsvpController extends Controller
         }
 
         $invite->load('guests');
+        event(new Rsvp($invite));
+
         return $invite;
     }
 }

@@ -6,21 +6,27 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\Invite;
 
 class RsvpUpdate extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $updated;
+    /**
+     * The invite
+     *
+     * @var \App\Models\Invite
+     */
+    private $invite;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($updated)
+    public function __construct(Invite $invite)
     {
-        $this->updated = $updated;
+        $this->invite = $invite;
     }
 
     /**
@@ -31,7 +37,7 @@ class RsvpUpdate extends Mailable
     public function build()
     {
         return $this->markdown('emails.rsvp.update')->with([
-            'updated' => $this->updated,
+            'invite' => $this->invite,
         ]);
     }
 }
