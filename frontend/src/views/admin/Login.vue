@@ -4,10 +4,10 @@
     form.login__form.border-grey-lighter.border.rounded.p-4.mb-6.max-w-md.mx-auto(@submit.prevent="handleSubmit")
       .login__email.mb-4
         label.login__label.mb-2.block Email
-        input.login__input.rounded.shadow-md.w-full.px-2.py-4.border.border-grey-lighter(v-model="email" required)
+        input.login__input.rounded.shadow-md.w-full.px-2.py-4.border.border-grey-lighter(v-model="email" required type="email" name="email")
       .login__artist.mb-8
         label.login__label.mb-2.block Password
-        input.login__input.rounded.shadow-md.w-full.px-2.py-4.border.border-grey-lighter(v-model="password" required type="password")
+        input.login__input.rounded.shadow-md.w-full.px-2.py-4.border.border-grey-lighter(v-model="password" required type="password" name="password")
       button.songs__add.bg-blue.text-white.px-2.py-3.rounded.w-full(type="submit" class="hover:bg-blue-dark hover:text-white") {{ submitting ? 'Submitting...' : `Submit` }}
 </template>
 
