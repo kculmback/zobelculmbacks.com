@@ -101,6 +101,7 @@ export default {
 
   &__ring {
     max-width: 100vw;
+    max-height: 100vw;
     width: 550px;
     height: 550px;
     transform: rotate(-120deg);

@@ -32,7 +32,7 @@
                 @change="handleInput(index, $event)"
               )
               label.ml-4.text-lg(:for="id") {{ name }}
-            .invite__guest.flex.items-center.mb-2(v-show="guests.length > 1")
+            .invite__guest.flex.items-center.mb-2
               input(
                 ref="inputs"
                 type="checkbox"
@@ -41,7 +41,8 @@
                 @input="updateAll"
                 @change="updateAll"
               )
-              label.ml-4.text-lg(for="all") None of us will be able to attend
+              label.ml-4.text-lg(for="all" v-if="guests.length > 1") None of us will be able to attend
+              label.ml-4.text-lg(for="all" v-else) I will not be able to attend
             button.block.text-white.px-4.py-3.rounded.mt-4(
               type="submit"
               :disabled="submitting"
