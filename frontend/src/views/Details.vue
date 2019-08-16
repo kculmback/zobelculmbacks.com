@@ -9,6 +9,12 @@
       router-link.font-hand.text-3xl(:to={ name: 'RSVP' }) RSVP
     hr.hr-fade.mt-8.mb-6
     .details__section
+      h2.mb-2 Attire
+      p.mb-1 - Casual
+      p.mb-1 - Avoid heels (the venue will be all grass)
+      p.mb-1 - Early September is usually very warm in<br>Spokane, so it may still be hot
+    hr.hr-fade.mt-8.mb-6
+    .details__section
       h2.mb-2 Location
       p.mb-2 Wedding & Reception will be held at Denison Ridge.
       p 4702 Furzee Rd
@@ -66,7 +72,10 @@ export default {
       { property: 'og:title', content: metadata.title.details },
       { property: 'og:description', content: metadata.description.details },
       { property: 'twitter:title', content: metadata.title.details },
-      { property: 'twitter:description', content: metadata.description.details },
+      {
+        property: 'twitter:description',
+        content: metadata.description.details,
+      },
     ],
   },
 }
